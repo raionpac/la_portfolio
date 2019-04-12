@@ -4,6 +4,11 @@ const menu = document.querySelector('.menu');
 const menuNav = document.querySelector('.menu-nav');
 const menuBranding = document.querySelector('.menu-branding');
 const navItems = document.querySelectorAll('.nav-item');
+const texts = ['Designer ', 'Front-end Developer '];
+let count = 0;
+let index = 0;
+let currentText = '';
+let letter = '';
 
 // Set Initial State Of Menu
 let showMenu = false;
@@ -31,3 +36,21 @@ function toggleMenu() {
     showMenu = false;
   }
 }
+
+//self invoke function
+(function type() {
+    
+  if (count == texts.length) {
+      count = 0;
+  }
+  currentText = texts[count];
+  letter = currentText.slice(0, ++index);
+
+  document.querySelector('.typing').textContent = letter;
+  if (letter.length === currentText.length) {
+      count++;
+      index = 0;
+  }
+  setTimeout(type, 400);
+
+}());
